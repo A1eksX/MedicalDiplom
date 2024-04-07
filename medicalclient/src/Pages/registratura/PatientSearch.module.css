@@ -1,0 +1,107 @@
+.psevdoBody{
+    margin: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.searchPanel{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #888;
+    border-radius: 4px;
+    max-width: 1440px;
+    width: 100%;
+    padding: 5px;
+}
+
+.itemPanel{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.customLabel{
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.input{
+    border: 1px solid darkorchid;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.buttonSearch{
+    border: 1px solid darkmagenta;
+    background-color: darkmagenta;
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: white;
+}
+
+.patients{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #888;
+    border-radius: 4px;
+    max-width: 1440px;
+    width: 100%;
+    padding: 5px;
+}
+
+.notPatients{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.iconSearch{
+    width: 32px;
+    height: 32px;
+}
+
+.textNotPatient{
+    margin-top: 10px;
+    font-size: larger;
+}
+
+.patient{
+    border-bottom: 1px solid #888;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+}
+
+.fieldPatient{
+    border-left: 1px solid #888;
+    padding-left: 5px;
+    font-size: larger;
+    margin: 10px 10px 0px 10px;
+}
+
+.eventButton{
+    border: 1px solid darkmagenta;
+    background-color: darkmagenta;
+    color: white;
+    border-radius: 4px;
+    font-size: medium;
+    padding: 8px 12px;
+}
+
+.medicalBook{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #88888856;
+}

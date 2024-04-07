@@ -1,0 +1,94 @@
+.psevdoBody{
+    background-color: white;
+    width: 100%;
+    max-width: 1440px;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.book{
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding: 12px;
+}
+
+.component{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.component:last-child{
+    margin-bottom: 0px;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.value{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.diagnosis{
+    padding-top: 5px;
+}
+
+.buttonsOnDiagnos{
+    width: 100%;
+    display: flex;
+}
+
+.buttonOnDiagnos, .createDiagnos, .cancel{
+    width: 50%;
+    border: 1px solid #888;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 4px;
+}
+
+.createDiagnos{
+    background-color: green;
+    color: white;
+    border: 0px;
+}
+
+.cancel{
+    background-color: gray;
+    border: 0px;
+    color: white;
+}
+
+.diagnos{
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #888;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.diagnos:last-child{
+    margin-bottom: 0px;
+}
+
+.diagnosName{
+    font-size: larger;
+}
+
+.procedures{
+    padding: 5px;
+}
+
+.procedure{
+    border: 1px solid black;
+    padding: 6px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.procedure:last-child{
+    margin-bottom: 0px;
+}

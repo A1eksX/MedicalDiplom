@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  backend:
+    image: api
+    restart: always
+    ports:
+      - "8080:8080"
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+
+  client:
+    image: client
+    ports:
+      - "5001:3000"
+    build:
+      context: ./medicalclient
+      dockerfile: Dockerfile
+    environment:
+      - WDS_SOCKET_PORT=0
+
+  db:
+    image: mysql:8
+    ports:
+      - "3306:3308"
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+    volumes:
+      - ./dbdata:/var/lib/mysql/
+
+  proxy:
+    image: nginx:mainline
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"

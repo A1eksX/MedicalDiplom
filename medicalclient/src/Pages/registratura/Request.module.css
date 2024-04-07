@@ -1,0 +1,47 @@
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .customH1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .customForm {
+    display: grid;
+    gap: 15px;
+  }
+  
+  .customLabel {
+    font-weight: bold;
+  }
+  
+  .customInput,
+  .customSelect,
+  .customTextarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .customButton {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+  .customButton:hover {
+    background-color: #45a049;
+  }
+  

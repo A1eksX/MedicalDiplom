@@ -1,0 +1,65 @@
+/* Add general styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+/* Style for the pseudo body container */
+.psevdoBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Style for the form container */
+.customForm {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+}
+
+/* Style for the form elements */
+.boxContainer {
+    margin-bottom: 15px;
+}
+
+.titleField {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.inputField {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Style for the submit button */
+.buttonExport {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.buttonExport:hover {
+    background-color: #45a049;
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+    .customForm {
+        width: 100%;
+    }
+}
