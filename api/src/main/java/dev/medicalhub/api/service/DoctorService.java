@@ -14,8 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
-
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -56,9 +57,21 @@ public class DoctorService {
     }
     public List<PatientCountProcedureModel> getPatient(long diplomaNumber){
 
-        return receptionRepo.findByDoctor_DiplomaNumber(diplomaNumber)
-                .stream().map(o-> o.getPatient().
-                        toDTOCountProcedureModel(receptionRepo.countByDoctor_DiplomaNumberAndPatient_Id(diplomaNumber, o.getPatient().getId()))).toList();
 
+        var patientCountProcedureModels = new ArrayList<>(receptionRepo.findByDoctor_DiplomaNumberOrderByPatient(diplomaNumber)
+                .stream().map(o -> o.getPatient().
+                        toDTOCountProcedureModel(receptionRepo.countByDoctor_DiplomaNumberAndPatient_Id(diplomaNumber, o.getPatient().getId()))).toList());
+        // Add the elements to set
+        Set<PatientCountProcedureModel> set = new LinkedHashSet<>(patientCountProcedureModels);
+
+        // Clear the list
+        patientCountProcedureModels.clear();
+
+        // add the elements of set
+        // with no duplicates to the list
+        patientCountProcedureModels.addAll(set);
+
+        // return the list
+        return patientCountProcedureModels;
     }
 }

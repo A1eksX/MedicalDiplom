@@ -4,6 +4,7 @@ import dev.medicalhub.api.entity.StatusReception;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 @Data
@@ -11,6 +12,6 @@ import java.time.ZonedDateTime;
 public class Reception {
 
     private long id;
-    private ZonedDateTime dateTime;
+    private LocalDateTime dateTime;
     private  String data;
 }

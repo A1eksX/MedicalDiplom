@@ -3,6 +3,7 @@ package dev.medicalhub.api.service;
 import dev.medicalhub.api.entity.*;
 import dev.medicalhub.api.exception.BadRequestException;
 import dev.medicalhub.api.exception.NotFoundException;
+import dev.medicalhub.api.model.PatientModel;
 import dev.medicalhub.api.model.ReceptionHistoryModel;
 import dev.medicalhub.api.model.ReceptionModel;
 import dev.medicalhub.api.model.ReceptionWithPatientModel;
@@ -86,4 +87,5 @@ public class ReceptionService {
 
         receptionRepo.save(reception);
     }
+
 }

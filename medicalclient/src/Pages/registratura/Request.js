@@ -52,7 +52,7 @@ function Request(props) {
         }
 
         const response = await HttpData('/api/reception', "POST", jwt, {
-            dateTime: date + 'T' + time + ':00Z',
+            dateTime: date + 'T' + time + ':00',
             data: data,
             doctorDiplomaNumber: diplom,
             patientId: patient.id

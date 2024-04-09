@@ -61,7 +61,7 @@ function Registration(props) {
             const { data } = response;
             setMedicalInstitutions(data);
 
-            if (data || data.length > 0)
+            if (data && data.length > 0)
                 setMedicalInstitutionId(data[0].id);
         }
         else console.log(response.error);
@@ -78,7 +78,7 @@ function Registration(props) {
 
             setSpecializations(data);
 
-            if (data || data.length > 0)
+            if (data && data.length > 0)
                 setSpecializationId(data[0].id);
         }
         else console.log(response.error);

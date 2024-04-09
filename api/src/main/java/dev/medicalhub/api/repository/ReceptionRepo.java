@@ -14,6 +14,9 @@ public interface ReceptionRepo extends CrudRepository<ReceptionEntity,Long> {
     public Iterable<ReceptionEntity> findByDoctorDiplomaNumberAndStatusNot(long doctorDiplomaNumber, StatusReception status);
 
     List<ReceptionEntity> findByDoctor_DiplomaNumber(long diplomaNumber);
+    List<ReceptionEntity> findByDoctor_DiplomaNumberOrderByPatient(long diplomaNumber);
 
     long countByDoctor_DiplomaNumberAndPatient_Id(long diplomaNumber, Long id);
+
+    List<ReceptionEntity> findByPatientId(long id);
 }

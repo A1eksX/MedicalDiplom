@@ -2,11 +2,13 @@ package dev.medicalhub.api.service;
 
 import dev.medicalhub.api.entity.MedicalBookEntity;
 import dev.medicalhub.api.entity.PatientEntity;
+import dev.medicalhub.api.entity.ReceptionEntity;
 import dev.medicalhub.api.exception.BadRequestException;
 import dev.medicalhub.api.exception.ConflictException;
 import dev.medicalhub.api.exception.NotFoundException;
 import dev.medicalhub.api.model.*;
 import dev.medicalhub.api.repository.PatientRepo;
+import dev.medicalhub.api.repository.ReceptionRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PatientService {
     private final PatientRepo patientRepo;
+    private final ReceptionRepo receptionRepo;
 
     public PatientModel registration(RegistrationPatientModel registrationPatientModel){
         if (patientRepo.existsByPassportData(String.valueOf(registrationPatientModel.getPassportData())))
@@ -59,5 +62,10 @@ public class PatientService {
     public PatientModel getPassportDataAndSnils(int passportData, int snils) {
         return patientRepo.findByPassportDataAndSnils(String.valueOf(passportData),String.valueOf(snils))
                 .orElseThrow(()->new NotFoundException("Пациент не найден")).toDTOModel();
+    }
+
+    public List<ReceptionWithDoctor> getByIdReceptions(long id) {
+        return receptionRepo.findByPatientId(id).stream().map(ReceptionEntity::toReceptionWithDoctor).toList();
+
     }
 }

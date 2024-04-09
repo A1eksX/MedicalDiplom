@@ -1,15 +1,14 @@
 package dev.medicalhub.api.entity;
 
-import dev.medicalhub.api.model.ReceptionHistoryModel;
-import dev.medicalhub.api.model.ReceptionModel;
-import dev.medicalhub.api.model.ReceptionWithPatient;
-import dev.medicalhub.api.model.ReceptionWithPatientModel;
+import dev.medicalhub.api.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 @Getter
@@ -23,7 +22,7 @@ public class ReceptionEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private ZonedDateTime dateTime;
+    private LocalDateTime dateTime;
     private String data;
     private StatusReception status;
     @ManyToOne
@@ -65,6 +64,14 @@ public class ReceptionEntity{
         return (ReceptionWithPatientModel) new ReceptionWithPatientModel()
                 .setDoctorDiplomaNumber(doctor.getDiplomaNumber())
                 .setPatient(patient.toDTOModel())
+                .setDateTime(dateTime)
+                .setData(data)
+                .setId(id);
+    }
+
+    public ReceptionWithDoctor toReceptionWithDoctor() {
+        return (ReceptionWithDoctor) new ReceptionWithDoctor()
+                .setDoctor(doctor.toDTO())
                 .setDateTime(dateTime)
                 .setData(data)
                 .setId(id);

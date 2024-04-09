@@ -39,5 +39,11 @@ public class PatientController {
     public MedicalBookWithDiseaseModel findByPatientId(@PathVariable long id){
         return medicalBookService.findByPatientIdWithProcedures(id);
     }
+    @GetMapping("/{id}/receptions")
+    public List<ReceptionWithDoctor> getByIdReceptions(@PathVariable long id){
+        return patientService.getByIdReceptions(id);
+    }
+
+
 
 }

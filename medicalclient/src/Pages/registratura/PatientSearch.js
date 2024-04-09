@@ -5,6 +5,7 @@ import { LuSearchX } from 'react-icons/lu';
 import { HttpNoData } from '../../Core/Core.js';
 import MedicalBook from "../../Module/MedicalBook.js";
 import styles from './PatientSearch.module.css';
+import { Alert, Modal, Accordion } from 'react-bootstrap';
 
 function PatientSearch(props) {
 
@@ -14,6 +15,15 @@ function PatientSearch(props) {
     const [snilsInput, setsnilsInput] = useState('');
     const [currentMedicalId, setCurrentMedicalId] = useState(-1);
     const [isMedicalBook, setIsMedicalBook] = useState(false);
+    const [currentReceptions, setCurrentReceptions] = useState();
+
+    const ShowReceptions = async (id) => {
+
+        const response = await HttpNoData(`/api/patient/${id}/receptions`, 'GET', jwt)
+
+        setCurrentReceptions(response.data);
+
+    }
 
     const PatientSearch = async(passport, snils) =>  {
 
@@ -23,6 +33,7 @@ function PatientSearch(props) {
             else console.log(response.error);
         }
 
+    console.log(JSON.stringify(currentReceptions));
     return <div className={styles.psevdoBody}>
         <div className={styles.searchPanel}>
             <div className={styles.itemPanel}>
@@ -39,16 +50,16 @@ function PatientSearch(props) {
         </div>
 
         <div className={styles.patients}>
-            {patients == null ? <div className={styles.notPatients}>
+            {patients == null || patients.length <= 0 ? <div className={styles.notPatients}>
                 <LuSearchX className={styles.iconSearch} />
                 <label className={styles.textNotPatient}>Поиск не увенчался успехом</label>
             </div> :
-                patients.map(patient =>
+                 patients.map(patient =>
                     <div key={patient.id} className={styles.patient}>
                         <div className={styles.fieldPatient}>{patient.fullname}</div>
                         <div className={styles.fieldPatient}><FaPassport /> {patient.snils}</div>
                         <div className={styles.fieldPatient}><BsCardText /> {patient.passportData}</div>
-                        <div className={styles.fieldPatient}><button className={styles.eventButton}>История посещений</button></div>
+                        <div className={styles.fieldPatient}><button className={styles.eventButton} onClick={() => {ShowReceptions(patient.id)}}>История посещений</button></div>
                         <div className={styles.fieldPatient}><button className={styles.eventButton} onClick={() =>{ setCurrentMedicalId(patient.medicalBookId); setIsMedicalBook(true); }}>Мед. книжка</button></div>
                     </div>
                 )}
@@ -60,7 +71,40 @@ function PatientSearch(props) {
             :
             null
         }
-        
+        {
+            currentReceptions ? <Modal
+                show={currentReceptions != null}
+                onHide={() => setCurrentReceptions(null)}
+                dialogClassName="modal-90w"
+                aria-labelledby="example-custom-modal-styling-title">
+                <Modal.Header closeButton>
+                    <Modal.Title id="example-custom-modal-styling-title">
+                        Список посещений
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {
+                        currentReceptions.length > 0 ?
+                            <Accordion>{
+                                currentReceptions.map(o =>
+                                    <Accordion.Item eventKey={o.id} key={o.id}>
+                                        <Accordion.Header>{o.dateTime.replace('T', ' ')}</Accordion.Header>
+                                        <Accordion.Body>
+                                            {o.data}
+                                            <br/>
+                                            <strong>{o.doctor.fullName}</strong>
+                                        </Accordion.Body>
+                                    </Accordion.Item>)
+                            }
+                            </Accordion>
+                            :  <Alert key={'warning'} variant={"warning"}>
+                            Пока записей нет.
+                        </Alert>    
+                    }
+                </Modal.Body>
+            </Modal> :
+                null
+        }
     </div>
 
 }
