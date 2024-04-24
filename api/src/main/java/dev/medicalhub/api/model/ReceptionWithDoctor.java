@@ -8,5 +8,5 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
 public class ReceptionWithDoctor extends Reception{
-    private Doctor doctor;
+    private DoctorWithMedicalInstitution doctor;
 }

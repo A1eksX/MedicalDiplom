@@ -71,7 +71,7 @@ public class ReceptionEntity{
 
     public ReceptionWithDoctor toReceptionWithDoctor() {
         return (ReceptionWithDoctor) new ReceptionWithDoctor()
-                .setDoctor(doctor.toDTO())
+                .setDoctor(doctor.toDTOWithMedicalInstitution())
                 .setDateTime(dateTime)
                 .setData(data)
                 .setId(id);

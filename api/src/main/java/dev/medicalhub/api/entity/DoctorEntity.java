@@ -2,6 +2,7 @@ package dev.medicalhub.api.entity;
 
 import dev.medicalhub.api.model.Doctor;
 import dev.medicalhub.api.model.DoctorModel;
+import dev.medicalhub.api.model.DoctorWithMedicalInstitution;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -46,6 +47,14 @@ public class DoctorEntity {
     }
     public Doctor toDTO(){
         return new Doctor()
+                .setAccessDusringWorkingPeriod(accessDuringWorkingPeriod)
+                .setSpecialization(specialization.getName())
+                .setFullName(fullName)
+                .setId(getDiplomaNumber());
+    }
+    public DoctorWithMedicalInstitution toDTOWithMedicalInstitution(){
+        return (DoctorWithMedicalInstitution) new DoctorWithMedicalInstitution()
+                .setMedicalInstitutionModel(medicalInstitution.toDTO())
                 .setAccessDusringWorkingPeriod(accessDuringWorkingPeriod)
                 .setSpecialization(specialization.getName())
                 .setFullName(fullName)

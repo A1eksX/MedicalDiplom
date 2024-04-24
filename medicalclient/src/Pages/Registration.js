@@ -48,7 +48,7 @@ function Registration(props) {
             }
             else console.log(responseUser.error);
         }
-        else console.log(responseCreate.error);
+        else window.alert("Такой врач уже зарегистрирован");
     }
 
     const InstitutionsChange = async (value) => {
@@ -74,7 +74,10 @@ function Registration(props) {
         const response = await HttpNoData('api/specialization?search=' + value, "GET", null);
 
         if (response.statusSuccessful) {
-            const data = response.data.map((item, index) => { item.id = index; return item; });
+
+            let data = [];
+            if(response.data && response.data.length > 0)
+                  data = response.data.map((item, index) => { item.id = index; return item; });
 
             setSpecializations(data);
 
@@ -107,7 +110,8 @@ function Registration(props) {
                 <label className={styles.titleField}>Специализация:</label>
                 <select className={styles.inputField} value={specializationId} onChange={(e) => setSpecializationId(+e.target.value)}>
                     {
-                        specializations.map(item => <option key={item.id} value={item.id}>{item.name}</option>)
+                        specializations && specializations.length > 0 ?
+                        specializations.map(item => <option key={item.id} value={item.id}>{item.name}</option>) : null
                     }
                 </select>
             </div>
@@ -121,7 +125,8 @@ function Registration(props) {
                 <label className={styles.titleField}>Больница:</label>
                 <select className={styles.inputField} value={medicalInstitutionId} onChange={(e) => setMedicalInstitutionId(+e.target.value) || console.log(e.target.value)}>
                     {
-                        medicalInstitutions.map(item => <option key={item.id} value={item.id}>({item.name}) {item.address}</option>)
+                         medicalInstitutions && medicalInstitutions.length > 0 ?
+                        medicalInstitutions.map(item => <option key={item.id} value={item.id}>({item.name}) {item.address}</option>): null
                     }
                 </select>
             </div>

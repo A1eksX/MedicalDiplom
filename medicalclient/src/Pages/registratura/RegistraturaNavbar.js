@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Doctors from './Doctors';
 import PatientSearch from './PatientSearch';
 import Request from "./Request";
+import ClientCreate from './ClientCreate';
 
 function RegistrationNavBar(props) {
 
@@ -18,6 +19,7 @@ function RegistrationNavBar(props) {
                             <Nav.Link href="/registratura/request">Создать заявку</Nav.Link>
                             <Nav.Link href="/registratura/doctors">Список докторов</Nav.Link>
                             <Nav.Link href="/registratura/patientsSearch">Поиск пациента</Nav.Link>
+                            <Nav.Link href="/registratura/patient">Зарегистрировать</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
@@ -27,6 +29,7 @@ function RegistrationNavBar(props) {
                     <Route path='/request' element={<Request jwt={props.jwt}/>} />
                     <Route path='/doctors' element={<Doctors jwt={props.jwt}/>} />
                     <Route path='/patientsSearch' element={<PatientSearch jwt={props.jwt}/>} />
+                    <Route path='/patient' element={<ClientCreate jwt={props.jwt}/>}/>
                 </Routes>
         </div>
     );

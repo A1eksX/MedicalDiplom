@@ -92,7 +92,11 @@ function PatientSearch(props) {
                                         <Accordion.Body>
                                             {o.data}
                                             <br/>
-                                            <strong>{o.doctor.fullName}</strong>
+                                            <strong>
+                                                ({o.doctor.specialization}) {o.doctor.fullName}
+                                                <br/>
+                                                {o.doctor.medicalInstitutionModel.name}, {o.doctor.medicalInstitutionModel.address}
+                                            </strong>
                                         </Accordion.Body>
                                     </Accordion.Item>)
                             }

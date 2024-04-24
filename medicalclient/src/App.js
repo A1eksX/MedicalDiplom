@@ -21,6 +21,7 @@ function App() {
 
       console.log(JSON.stringify(user));
   }
+
   return (
     <Router>
         <div>
